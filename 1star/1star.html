@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PDM2 - W4P2 - 1 Star Exercise</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./lib/main-styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="./lib/libraries/p5.min.js"></script>
+    <script src="./lib/libraries/p5.sound.min.js"></script>
+  </head>
+
+  <body>
+    <h1>1 Star Exercise</h1>
+    <p>Your sketch:</p>
+    <div class="guidance">
+        <h2>Instructions</h2>
+        <div>
+            <p>You will create an interactive animation as shown below.
+            </p>
+            <ol>
+                <li>gameObjects.js contains a <code>CollisionRect</code> class. Familiarise 
+                yourself with the public methods.</li>
+                <li>In gameObjects.js, create another class called <code>Ball</code>, which 
+                inherits from <code>CollisionRect</code>. <code>Ball</code> should have three attributes representing the ball's position and speed on the y axis. When 
+            the ball is created, it should be positioned in the middle of the top of the screen. Set the 
+        speed to 5.</li>
+                <li>Add a <code>draw()</code> and <code>move()</code> methods to the <code>Ball</code>. <code>draw()</code> should 
+                draw the ball (you can decide its size and colour) and <code>move()</code> should use the speed 
+            attribute to move it down the y axis.</li>
+                <li>Create another class called <code>Catcher</code> that inherits from <code>CollisionRect</code>. The catcher 
+                will need location attributes but not speed.</li>
+                <li>Add a <code>draw()</code> method, which should draw a rectangle (you choose the size and colour) at the catcher's coordinates.</li>
+                <li>In sketch.js, use your new classes to create the interactive animation shown below. The ball should drop from the top of the canvas 
+                    and the catcher should move with the user's mouse. If the ball hits the catcher it should stop moving. Pressing "s" should reset the 
+                    ball's position with a random x coordinate.
+                </li>
+            </ol>
+            <p>Expected output:</p>
+            <p>
+                <video width="400" height="600" controls>
+                    <source src="./assets/1star.mov" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </p>
+        </div>
+        <div>
+            <button class="btn btn-primary hint" type="button" data-bs-toggle="collapse" data-bs-target="#hint" aria-expanded="false" aria-controls="hint">
+                Hint
+            </button>
+            <div class="collapse" id="hint">
+                <div class="card card-body">
+                    <p>In your <code>Ball</code> and <code>Catcher</code> classes, don't forget to use the 
+                        parent class methods to set and update the <code>CollisionRect</code> position and dimensions. You will also 
+                    need to call <code>super()</code> in both constructors even though the parent constructor is empty.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="gameObjects.js"></script>
+    <script src="sketch.js"></script>
+  </body>
+</html>

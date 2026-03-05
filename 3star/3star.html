@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PDM2 - W4P2 - 3 Star Exercise</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./lib/main-styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="./lib/libraries/p5.min.js"></script>
+    <script src="./lib/libraries/p5.sound.min.js"></script>
+  </head>
+
+  <body>
+    <h1>3 Star Exercise</h1>
+    <p>Your sketch:</p>
+    <div class="guidance">
+        <h2>Instructions</h2>
+        <div>
+            <p>This is a very challenging exercise. You can decide whether you're ready to take it on.</p>
+            <p>Your task is to implement a (basic) clone of Tetris, which you can <a href="https://www.freetetris.org/game.php" target="_blank">play online for free</a>.</p>
+            <p>Focus on these three aspects:</p>
+            <ol>
+                <li>How to represent the Tetronimoes (the blocks). I recommend using a grid approach so you can 
+                    use a 2D array to store the positions of the squares that make up a block. For example, here 
+                    is the 2D array for the "T" block:
+                    <pre>[
+  [0, 1, 0],
+  [1, 1, 1]
+]</pre>Implement one or two of the simpler blocks first, like the "O" (the square) or the "I".</li>
+                <li>Make a sequence of Tetrominoes drop from the top of the canvas to the bottom. Like Snake, which 
+                    you implemented in PDM 1, you can think of the canvas as a grid of squares. The pieces should move by jumping 
+                    one grid cell at a time rather than moving pixel by pixel. Allow the user 
+                    to move the pieces left and right. Although it should ideally be possible to rotate the 
+                    pieces as shown below, you will probably want to leave this part of the implementation for an optional extra challenge.
+                </li>
+                <li>Use collision detection to make each falling piece stop when it reaches the bottom of the canvas or 
+                    its path is blocked by a previous piece.
+                </li>
+            </ol>
+            <p>Expected output:</p>
+            <p>
+                <video width="300" height="400" controls>
+                    <source src="./assets/3star.mov" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </p>
+        </div>
+        <div>
+            <button class="btn btn-primary hint" type="button" data-bs-toggle="collapse" data-bs-target="#hint" aria-expanded="false" aria-controls="hint">
+                Hint
+            </button>
+            <div class="collapse" id="hint">
+                <div class="card card-body">
+                    <p>The simplest and most efficient method of collision detection for Tetris is grid-based. You should have a grid representing 
+                        the entire canvas and each Tetromino should also be a grid. Look back at your code (or the sample solutions) 
+                        from last practical for clues.
+                    </p>
+                    <p>To make the falling pieces stop when they come into contact with the bottom of the canvas or another 
+                        piece, your grid class will need a method to detect if any of its occupied cells are in contact with 
+                        occupied cells in another grid. This is a bit 
+                    different to the grids you've seen so far and it is left for you to figure out.</p>
+                    <p>If you would like to implement Tetromino rotation, do some research on how to "transpose a matrix".</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="sketch.js"></script>
+  </body>
+</html>
