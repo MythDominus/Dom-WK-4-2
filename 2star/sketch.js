@@ -3,6 +3,11 @@ const bullets = [];
 const MAX_BULLETS = 50;
 let nextBullet = 0;
 
+const enemies = new Set();
+const NUM_ENEMIES = 5;
+
+let player;
+
 function setup() {
     createCanvas(600, 600);
 
@@ -19,6 +24,24 @@ function draw() {
             bullet.draw();
         }
     }
+    
+    for (const enemy of enemies) {
+        enemy.move();
+        enemy.draw();
+        for (const bullet of bullets) {
+            if (bullet.isActive() && bullet.hit(enemy)) {
+                console.log("Hit!");
+                enemies.delete(enemy);
+                bullet.setPosition(-50, -50);
+            }
+        }
+    } 
+    if (keyIsPressed) {
+        movePlayer();
+    } else {
+        player.setStatus(player.STOP);
+    }
+    player.draw();
 }
 
 function keyPressed() {
@@ -28,3 +51,5 @@ function keyPressed() {
     }
     bullets[nextBullet].fire(300, 500);
 }
+
+function movePlayer() {

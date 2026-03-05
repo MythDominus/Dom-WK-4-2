@@ -123,3 +123,86 @@ class Bullet extends CollisionRect {
         return this.#active;
     }
 }
+
+class Player {
+    static MOVE_UP = 'up';
+    static MOVE_DOWN = 'down';
+    static MOVE_LEFT = 'left';
+    static MOVE_RIGHT = 'right';
+    static STOP = 'stop';
+
+    #x;
+    #y;
+    #SIZE = 20;
+    #speed = 3;
+    #direction = Player.STOP;
+
+    constructor(x, y) {
+        this.#x = x;
+        this.#y = y;
+    }
+
+    getX() {
+        return this.#x;
+    }
+
+    getY() {
+        return this.#y;
+        }
+
+    draw() {
+        fill(255, 0, 0);
+        circle(this.#x, this.#y, this.#SIZE);
+    }
+    
+    move() {
+        switch (this.#direction) {
+            case Player.MOVE_UP:
+                this.#y -= this.#speed;
+                break;
+            case Player.MOVE_DOWN:
+                this.#y += this.#speed;
+                break;
+            case Player.MOVE_LEFT:
+                this.#x -= this.#speed;
+                break;
+            case Player.MOVE_RIGHT:
+                this.#x += this.#speed;
+                break;
+        }
+    }
+
+    setStatus(newStatus) {
+        this.#direction = newStatus;
+    }
+}
+
+class Enemy extends CollisionRect {
+    #speedX;
+    #speedY;
+
+    constructor(x, y, speedX, speedY) {
+        super();
+        this.setRectangle(10, 30), random(10, 30);
+        this.setPosition(random(10, 30 - this.getWidth()), random(0, height - this.getHeight()));
+        this.#speedX = speedX;
+        this.#speedY = speedY;
+    }
+
+    move() {
+        if (this.getX() <= 0 || this.getX() >= width - this.getWidth()) {
+            this.#speedX *= -1;
+        }
+        if (this.getY() <= 0 || this.getY() >= height - this.getHeight()) {
+            this.#speedY *= -1;
+        }
+        this.setPosition(this.getX() + this.#speedX, this.getY() + this.#speedY);
+    }
+
+    draw() {
+         fill(0, 0, 255);
+         rect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+    }
+}
+
+

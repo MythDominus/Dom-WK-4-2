@@ -70,9 +70,70 @@ class CollisionRect {
         if (this.#rectX + this.#rectWidth >= other.getX()
             && this.#rectX <= other.getX() + other.getWidth()
             && this.#rectY + this.#rectHeight >= other.getY()
-            && this.#rectX <= other.getY() + other.getHeight()) {
+            && this.#rectY <= other.getY() + other.getHeight()) {
             return true;
         }
         return false;
+    }
+}
+
+class Ball extends CollisionRect {
+    #x
+    #y
+    #speed = 5;
+    #SIZE = 20;
+
+    constructor(x, y) {
+        super();
+        this.#x = x;
+        this.#y = y;
+        this.setRectangle(this.#SIZE, this.#SIZE);
+        this.#updateCollisionRect();
+    }
+
+    #updateCollisionRect() {
+        super.setPosition(this.#x - this.#SIZE / 2, this.#y - this.#SIZE / 2);
+    }
+
+    draw() {
+        fill(255, 0, 0);
+        circle(this.#x, this.#y, this.#SIZE);
+    }
+
+    move() {
+        this.#y += this.#speed;
+        this.#updateCollisionRect();
+    }
+
+    setPosition(x, y) {
+        this.#x = x;
+        this.#y = y;
+        this.#updateCollisionRect();
+    }
+}
+
+class Paddle extends CollisionRect {
+    #x
+    #y
+    #WIDTH = 50
+    #HEIGHT = 20
+
+    constructor(x, y) {
+        super();
+        this.#x = x;
+        this.#y = y;
+        this.setRectangle(this.#WIDTH, this.#HEIGHT);
+        this.setPosition(this.#x, this.#y);
+    }
+
+    draw() {
+        fill(0, 0, 255);
+        rect(this.#x, this.#y, this.#WIDTH, this.#HEIGHT);
+    }
+
+    setPosition(x, y) {
+        this.#x = x;
+        this.#y = y;
+        super.setPosition(this.#x, this.#y);
     }
 }
